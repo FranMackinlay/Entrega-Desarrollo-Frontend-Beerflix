@@ -235,6 +235,10 @@ main {
     padding: 0;
     text-align: center;
     color: black;
+    background-color: wheat;
+    text-align: center;
+    opacity: 0.9;
+    margin-top: 200px;
   }
 
   .logo {
@@ -297,6 +301,7 @@ main {
   }
   #date-filter {
     width: 118px;
+    height: 23px;
   }
   .beer-card {
     position: relative;
