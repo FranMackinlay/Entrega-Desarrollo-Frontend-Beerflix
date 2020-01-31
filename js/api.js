@@ -4,21 +4,21 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
   const searchAPIEndpoint = `${API_URL}/beers?search=`;
   const beersAPIEndpoint = `${API_URL}/beers`;
   return {
-    getBeers: async (text) => {
+    getBeers: async text => {
       try {
         const URL = text ? `${searchAPIEndpoint}${text}` : beersAPIEndpoint;
         const response = await fetch(URL, {
           method: 'GET',
           headers: {
             'Content-type': 'application/json',
-            'X-API-KEY': API_KEY,
-          },
+            'X-API-KEY': API_KEY
+          }
         });
         if (!response.ok) {
           throw new Error('Error retrieving beers');
         }
         const data = await response.json();
-        const beers = data.beers.map((result) => {
+        const beers = data.beers.map(result => {
           if (result.beer) {
             return result.beer;
           }
@@ -30,30 +30,32 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
         throw err;
       }
     },
-    getBeerDetail: (id) => fetch(`${beersAPIEndpoint}/${id}`, {
-      method: 'GET',
-      headers: {
-        'X-API-KEY': API_KEY,
-      },
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Error retrieving beers ${id}`);
+    getBeerDetail: id =>
+      // eslint-disable-next-line implicit-arrow-linebreak
+      fetch(`${beersAPIEndpoint}/${id}`, {
+        method: 'GET',
+        headers: {
+          'X-API-KEY': API_KEY
         }
-        return response.json();
       })
-      .catch((err) => {
-        console.log(err.message);
-        throw err;
-      }),
-    getComments: async (id) => {
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Error retrieving beers ${id}`);
+          }
+          return response.json();
+        })
+        .catch(err => {
+          console.log(err.message);
+          throw err;
+        }),
+    getComments: async id => {
       try {
         const response = await fetch(`${API_URL}/beers/${id}`, {
           method: 'GET',
           headers: {
             'Content-type': 'application/json',
-            'X-API-KEY': API_KEY,
-          },
+            'X-API-KEY': API_KEY
+          }
         });
         if (!response.ok) {
           throw new Error('Error retrieving Comments');
@@ -74,8 +76,8 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
           body: JSON.stringify({ comment: text }),
           headers: {
             'Content-type': 'application/json',
-            'X-API-KEY': API_KEY,
-          },
+            'X-API-KEY': API_KEY
+          }
         });
 
         if (!response.ok) {
@@ -90,14 +92,14 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
         throw err;
       }
     },
-    addLike: async (id) => {
+    addLike: async id => {
       try {
         const response = await fetch(`${API_URL}/beers/${id}/like`, {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',
-            'X-API-KEY': API_KEY,
-          },
+            'X-API-KEY': API_KEY
+          }
         });
 
         if (!response.ok) {
@@ -111,7 +113,7 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
         console.error(err);
         throw err;
       }
-    },
+    }
   };
 };
 
