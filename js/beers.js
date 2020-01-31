@@ -2,8 +2,7 @@ import api from './api.js';
 
 const { getBeers } = api();
 
-const templateBeers = beer => {
-  return `
+const templateBeers = (beer) => `
     <a href="/beers/${beer.beerId}">
       <div class="beer-card">
         <header class="card-header">
@@ -25,29 +24,28 @@ const templateBeers = beer => {
       </div>
     </a>
   `;
-};
 
 const renderBeer = (element, items) => {
-  const htmlBeers = items.slice(0, 10).map(function(beer, index) {
-      if (index < 2) {
-        return templateBeers({ ...beer });
-      }
-      return templateBeers({ ...beer })
-    })
+  const htmlBeers = items.slice(0, 10).map((beer, index) => {
+    if (index < 2) {
+      return templateBeers({ ...beer });
+    }
+    return templateBeers({ ...beer });
+  })
     .join('');
   element.innerHTML = `
     ${htmlBeers}
   `;
 };
 
-const renderHomeBeers = async search => {
+const renderHomeBeers = async (search) => {
   try {
     const beers = await getBeers(search);
     const beerList = document.getElementById('beer-list');
     renderBeer(beerList, beers);
   } catch (err) {
     console.log(err);
-  } 
+  }
 };
 
 export default renderHomeBeers;

@@ -1,26 +1,25 @@
-
 const API_KEY = 'Q44RZ4M-2994445-Q2KNM97-QBSDHR7';
 
 const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
   const searchAPIEndpoint = `${API_URL}/beers?search=`;
   const beersAPIEndpoint = `${API_URL}/beers`;
   return {
-    getBeers: async text => {
+    getBeers: async (text) => {
       try {
-        const URL = text ? `https://beerflix-api.herokuapp.com/api/v1/beers?search=${text}` : beersAPIEndpoint;
+        const URL = text ? `${searchAPIEndpoint}${text}` : beersAPIEndpoint;
         const response = await fetch(URL, {
           method: 'GET',
           headers: {
-            'Content-type' : 'application/json',
-            'X-API-KEY': API_KEY
-          }
+            'Content-type': 'application/json',
+            'X-API-KEY': API_KEY,
+          },
         });
         if (!response.ok) {
           throw new Error('Error retrieving beers');
         }
         const data = await response.json();
-        const beers = data.beers.map(result => {
-          if(result.beer){
+        const beers = data.beers.map((result) => {
+          if (result.beer) {
             return result.beer;
           }
           return result;
@@ -31,38 +30,36 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
         throw err;
       }
     },
-    getBeerDetail: id => {
-      return fetch(`${beersAPIEndpoint}/${id}`, {
-        method: 'GET',
-        headers: {
-          'X-API-KEY': API_KEY
-        }
-      })
-      .then(response => {
+    getBeerDetail: (id) => fetch(`${beersAPIEndpoint}/${id}`, {
+      method: 'GET',
+      headers: {
+        'X-API-KEY': API_KEY,
+      },
+    })
+      .then((response) => {
         if (!response.ok) {
           throw new Error(`Error retrieving beers ${id}`);
         }
         return response.json();
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err.message);
         throw err;
-      });
-    },
-    getComments: async id => {
+      }),
+    getComments: async (id) => {
       try {
-        const response = await fetch (`${API_URL}/beers/${id}`, {
+        const response = await fetch(`${API_URL}/beers/${id}`, {
           method: 'GET',
           headers: {
             'Content-type': 'application/json',
-            'X-API-KEY': API_KEY
-          }
+            'X-API-KEY': API_KEY,
+          },
         });
         if (!response.ok) {
           throw new Error('Error retrieving Comments');
         }
         const commentsJson = await response.json();
-        const comments = commentsJson.beer.comments;
+        const { comments } = commentsJson.beer;
         // console.log(comments);
         return comments;
       } catch (err) {
@@ -72,20 +69,20 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
     },
     createComment: async (id, text) => {
       try {
-        const response = await fetch (`${API_URL}/beers/${id}/comment`, {
+        const response = await fetch(`${API_URL}/beers/${id}/comment`, {
           method: 'POST',
-          body: JSON.stringify({comment : text}),
+          body: JSON.stringify({ comment: text }),
           headers: {
             'Content-type': 'application/json',
-            'X-API-KEY': API_KEY
-          }
+            'X-API-KEY': API_KEY,
+          },
         });
-        
+
         if (!response.ok) {
           throw new Error('Error createComment');
         }
         const commentsJson = await response.json();
-        const comments = commentsJson.beer.comments;
+        const { comments } = commentsJson.beer;
         console.log(comments);
         return comments;
       } catch (err) {
@@ -95,31 +92,27 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
     },
     addLike: async (id) => {
       try {
-        const response = await fetch (`${API_URL}/beers/${id}/like`, {
+        const response = await fetch(`${API_URL}/beers/${id}/like`, {
           method: 'POST',
           headers: {
             'Content-type': 'application/json',
-            'X-API-KEY': API_KEY
-          }
+            'X-API-KEY': API_KEY,
+          },
         });
-        
+
         if (!response.ok) {
           throw new Error('Error createComment');
         }
         const likesJson = await response.json();
-        const likes = likesJson.beer.likes;
+        const { likes } = likesJson.beer;
         console.log(likes);
         return likes;
       } catch (err) {
         console.error(err);
         throw err;
       }
-    }
+    },
   };
 };
 
 export default api;
-
-
-
-

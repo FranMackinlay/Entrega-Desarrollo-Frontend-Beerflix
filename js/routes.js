@@ -10,11 +10,10 @@ const formInput = document.getElementById('searchInput');
 
 page('/', () => {
   formInput.innerHTML = '';
-  renderHomeBeers(getItem(INPUT_STORAGE_ID));  
+  renderHomeBeers(getItem(INPUT_STORAGE_ID));
 });
 page('/beers/:id', (context) => {
-  const {params: { id }} = context;
+  const { params: { id } } = context;
   renderDetail(id);
-
 });
 page();

@@ -1,4 +1,4 @@
-export const replace = element => (removeClass, addClass) => {
+export const replace = (element) => (removeClass, addClass) => {
   element.classList.remove(removeClass);
   element.classList.add(addClass);
 };

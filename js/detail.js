@@ -1,7 +1,8 @@
 import api from './api.js';
 
-const detailTemplate = ({ beerId, name, image, price, description, firstBrewed, brewersTips, likes} = {}) => {
-  return `
+const detailTemplate = ({
+  beerId, name, image, price, description, firstBrewed, brewersTips, likes,
+} = {}) => `
     <div class="detail-section">
       <header id="${beerId}">
         <div class="title-section">
@@ -45,20 +46,13 @@ const detailTemplate = ({ beerId, name, image, price, description, firstBrewed, 
       </div>
     </div>
   `;
-};
 
-const stringify = str => {
-  return JSON.stringify(str);
-};
-
-const commentTemplate = ({ comment, dateComment }) => {
-  return `
+const commentTemplate = ({ comment, dateComment }) => `
     <div class="list-item">
       <p>${comment}</p>
       ${dateComment}
     </div>
   `;
-};
 
 const commentsFormtemplate = `
   <div id="detail" class="detail-content"></div>
@@ -75,13 +69,13 @@ const commentsFormtemplate = `
 const { getBeerDetail } = api();
 const { getComments, createComment, addLike } = api();
 
-const renderForm = id => {
+const renderForm = (id) => {
   const formSection = document.getElementById('commentForm');
   formSection.innerHTML = commentsFormtemplate;
   const commentForm = document.getElementById('comment-form');
   const commentsInput = document.getElementById('comment');
   const commentsList = document.getElementById('commentList');
-  commentForm.addEventListener('submit', async event => {
+  commentForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (commentsInput.validity.valid) {
       // Llamar API para crear comment
@@ -95,34 +89,31 @@ const renderForm = id => {
   });
 };
 
-const likesTemplate = likes => {
-  return `
+const likesTemplate = (likes) => `
     <div class="likes">
       Likes: ${likes}
     </div>
     <div id="like-button-container">
      <button type="submit" id="likeButton">Like this beer!</button> 
     </div>`;
-}
 
-const renderLikes = id => {
+const renderLikes = (id) => {
   const likeButton = document.getElementById('likeButton');
-  likeButton.addEventListener('click', async event => {
+  likeButton.addEventListener('click', async (event) => {
     console.log('click!!!');
     event.preventDefault();
     const firstLikes = document.getElementById('first-likes');
     const like = await addLike(id);
     firstLikes.innerHTML = likesTemplate(like);
-    // console.log(like); 
-
+    // console.log(like);
   });
 };
 
-const renderDetail = async id => {
+const renderDetail = async (id) => {
   try {
     const [detail, comments] = await Promise.all([
       getBeerDetail(id),
-      getComments(id)
+      getComments(id),
     ]);
     const template = detailTemplate(detail.beer);
     const mainSection = document.querySelector('main');
@@ -132,14 +123,13 @@ const renderDetail = async id => {
     mainSection.style.background = '#DEB841';
     mainSection.style.padding = '10px';
     mainSection.style.borderRadius = '20px';
-    
-    
-    
+
+
     mainSection.innerHTML = template;
     renderForm(id);
     renderLikes(id);
     const commentList = document.getElementById('commentList');
-    commentList.innerHTML +=  comments.map(commentTemplate).join('');
+    commentList.innerHTML += comments.map(commentTemplate).join('');
   } catch (err) {
     // manejo erores
     console.log(err);
