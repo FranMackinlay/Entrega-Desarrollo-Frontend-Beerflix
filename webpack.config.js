@@ -8,5 +8,13 @@ module.exports = {
     path: path.join(__dirname, 'webpack-basic', 'build'),
     filename: 'bundle.js'
     // filename: 'bundle.[hash].js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
   }
 };
