@@ -1,0 +1,8 @@
+@use 'variables/$mainColor';
+
+.card {
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: $mainColor;
+  padding: 20px;
+}

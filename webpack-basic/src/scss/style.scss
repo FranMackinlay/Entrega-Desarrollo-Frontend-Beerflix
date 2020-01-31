@@ -1,7 +1,8 @@
 @import 'reset';
 
-$main-color: grey;
+@import 'card';
+
 
 body {
-  background-color: $main-color;
+  background-color: grey;
 }
