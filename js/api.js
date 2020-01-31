@@ -2,7 +2,7 @@ const API_KEY = 'Q44RZ4M-2994445-Q2KNM97-QBSDHR7';
 
 const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
   const searchAPIEndpoint = `${API_URL}/beers?search=`;
-  const beersAPIEndpoint = `${API_URL}/beers`
+  const beersAPIEndpoint = `${API_URL}/beers`;
   return {
     getBeers: async (text) => {
       try {

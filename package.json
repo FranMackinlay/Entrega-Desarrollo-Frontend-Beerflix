@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "init:lint": "./node_modules/.bin/eslint --init",
     "fix:lint": "./node_modules/.bin/eslint ./js/* --fix",
+    "lint": "./node_modules/.bin/eslint ./js/*",
     "start": "node server.js"
   },
   "repository": {
