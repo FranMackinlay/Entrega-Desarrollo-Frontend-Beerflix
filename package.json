@@ -8,7 +8,9 @@
     "init:lint": "./node_modules/.bin/eslint --init",
     "fix:lint": "./node_modules/.bin/eslint ./js/* --fix",
     "lint": "./node_modules/.bin/eslint ./js/*",
-    "webpack": "./node_modules/.bin/webpack --entry './webpack-basic/index.js'",
+    "webpack": "./node_modules/.bin/webpack",
+    "webpack:watch": "./node_modules/.bin/webpack --watch",
+    "webpack:demo:entry": "./node_modules/.bin/webpack --entry './webpack-basic/index.js'",
     "start": "node server.js"
   },
   "repository": {
