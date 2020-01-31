@@ -32,7 +32,7 @@ const renderBeer = (element, items) => {
       if (index < 2) {
         return templateBeers({ ...beer });
       }
-      return templateBeers({ ...beer });
+      return templateBeers({ ...beer })
     })
     .join('');
   element.innerHTML = `

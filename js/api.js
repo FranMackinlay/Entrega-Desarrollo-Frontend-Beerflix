@@ -120,3 +120,6 @@ const api = (API_URL = 'https://beerflix-api.herokuapp.com/api/v1') => {
 
 export default api;
 
+
+
+

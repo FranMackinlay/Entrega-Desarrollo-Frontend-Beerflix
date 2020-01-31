@@ -1,18 +1,23 @@
 {
-  "name": "entrega-frontend",
+  "name": "entrega-desarrollo-frontend-beerflix",
   "version": "1.0.0",
-  "description": "",
+  "description": "Entrega Desarrollo Frontend con Javascript.",
   "main": "server.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "init:lint": "./node_modules/.bin/eslint --init",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/FranMackinlay/Entrega-Desarrollo-Frontend-Beerflix.git"
+    "url": "git+https://github.com/FranMackinlay/Entrega-Desarrollo-Frontend-Beerflix.git"
   },
-  "author": "",
+  "author": "FranMackinlay",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FranMackinlay/Entrega-Desarrollo-Frontend-Beerflix/issues"
+  },
+  "homepage": "https://github.com/FranMackinlay/Entrega-Desarrollo-Frontend-Beerflix#readme",
   "dependencies": {
     "express": "^4.17.1"
   },
