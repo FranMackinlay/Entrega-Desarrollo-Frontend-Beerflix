@@ -1,7 +1,7 @@
 import sayHello from './js/utils';
 import getItems from './js/api';
 import './scss/style.scss';
-import yacht from './images/yacht_race@hires.jpg';
+import yacht from './images/yacht_race@tablet.jpg';
 
 console.log(yacht);
 

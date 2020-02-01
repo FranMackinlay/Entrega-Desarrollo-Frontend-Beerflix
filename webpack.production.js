@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require('path'); // es una libreria de node nativa.
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -7,8 +8,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const isProduction = process.env.PORT === 'production';
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
-  mode: 'development',
+  devtool: 'source-map',
+  mode: 'production',
   entry: path.join(__dirname, 'webpack-basic', 'src', 'index.js'),
   output: {
     path: path.join(__dirname, 'webpack-basic', 'build'),
@@ -17,18 +18,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: false
-            }
-          }
-        ]
-      },
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
@@ -64,14 +53,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(__dirname, 'webpack-basic', 'index.html')
-    }),
-    new webpack.HotModuleReplacementPlugin()
-  ],
-  devServer: {
-    port: 3000,
-    contentBase: path.join(__dirname, 'webpack-basic'),
-    overlay: true,
-    hot: true,
-    historyApiFallback: true
-  }
+    })
+  ]
 };
