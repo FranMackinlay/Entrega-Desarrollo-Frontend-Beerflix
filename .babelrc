@@ -7,6 +7,5 @@
         "corejs": 3
       }
     ]
-  ],
-  "plugins": ["transform-remove-console"]
+  ]
 }

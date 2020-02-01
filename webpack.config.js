@@ -34,6 +34,13 @@ module.exports = {
         test: /\.js$/,
         use: 'babel-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.(jpg|png|svg|jpeg|gif)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]'
+        }
       }
     ]
   },
@@ -43,10 +50,14 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(__dirname, 'webpack-basic', 'index.html')
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
     port: 3000,
-    contentBase: path.join(__dirname, 'webpack-basic')
+    contentBase: path.join(__dirname, 'webpack-basic'),
+    overlay: true,
+    hot: true,
+    historyApiFallback: true
   }
 };
