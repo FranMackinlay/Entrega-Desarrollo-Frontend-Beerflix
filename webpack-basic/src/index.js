@@ -1,11 +1,17 @@
+import pick from 'lodash/pick';
 import sayHello from './js/utils';
 import getItems from './js/api';
 import './scss/style.scss';
 import yacht from './images/yacht_race@tablet.jpg';
 
-console.log(yacht);
-
 const container = document.querySelector('#root');
+
+const _ = { pick };
+
+const data = { title: 'title', surname: 'surname' };
+
+const formatData = _.pick(data, ['title']);
+console.log(formatData);
 
 container.innerHTML = `
   <div class="card">
