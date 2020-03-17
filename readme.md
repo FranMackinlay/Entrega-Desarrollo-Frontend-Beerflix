@@ -1,5 +1,12 @@
-Entrega Desarrollo Frontend con Javascript.
+> Entrega Desarrollo Frontend con Javascript.
 
-Beerflix
+# Beerflix
 
-Subido sin node_modules que son necesarios para usar express.
+Find the perfect beer, leave a comment, hit that like button.
+
+## Initialize
+
+In root directory run:
+```shell
+npm start
+```
