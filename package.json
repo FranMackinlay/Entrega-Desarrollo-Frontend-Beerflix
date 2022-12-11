@@ -27,7 +27,7 @@
   "homepage": "https://github.com/FranMackinlay/Entrega-Desarrollo-Frontend-Beerflix#readme",
   "dependencies": {
     "core-js": "^3.6.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
